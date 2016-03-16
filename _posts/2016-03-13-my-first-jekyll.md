@@ -2,7 +2,8 @@
 layout: post
 title:  "我的第一篇Jekyll博客"
 date:   2016-03-13 20:29:09 +0800
-categories: Jekyll rails
+categories: articles
+keywords: Jekyll rails
 ---
 晚上看了一下[Jekyll](http://jekyllrb.com/)的结构和写法，以后就试着用Jekyll来写博客了。
 
