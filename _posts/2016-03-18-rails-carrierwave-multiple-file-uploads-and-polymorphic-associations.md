@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "carrierwave上传多个图片 AND 多态关联"
+title:  "carrierwave上传多个图片以及多态关联"
 date:   2016-03-18 01:10:00 +0800
 categories: articles
 keywords: rails, carrierwave, multiple, file, polymorphic
