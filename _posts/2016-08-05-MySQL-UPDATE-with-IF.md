@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "MySQL包含IF的UPDATE"
-date:   2016-06-07 22:00:00 +0800
+date:   2016-08-05 00:30:00 +0800
 categories: articles
 keywords: MySQL UPDATE IF ADD_DATE
 ---
