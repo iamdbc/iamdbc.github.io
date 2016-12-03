@@ -1,13 +1,29 @@
-title: iamdbc
-name:  iamdbc
-email: iamdbc@126.com
-description: Hi, this is DBC.
-keywords:  iamdbc
-baseurl: ""
-url: "http://iamdbc.github.io"
-twitter_username: iamdbc
-github_username:  iamdbc
+# Blog settings
+permalink: /blog/:title
 
+title: iamdbc
+name: iamdbc
+description: Hi, this is DBC.
+github_username:  iamdbc
+google_verification: null
+
+url: "https://iamdbc.github.io"
+
+
+# File management
+include: [".htaccess"]
+
+# Sass
+sass:
+  style: :compressed
+  sass_dir: _sass
+
+
+# Markdown
 markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+highlighter: rouge
 
 timezone: Asia/Shanghai
