@@ -10,17 +10,17 @@ keywords: rails api grape grape-entity grape-swagger
 
 ## 0 安装
 
-```ruby
+{% highlight bash %}
 # gemfile
 gem 'grape'
 gem 'grape-entity'
 gem 'grape-swagger'
-```
+{% endhighlight %}
 <br>
 
 ## 1 目录结构
 
-```text
+{% highlight text %}
 
 api
 └── v1
@@ -30,10 +30,10 @@ api
       │    └── base_helper.rb
       ├── api.rb
       └── products_api.rb
-```
+{% endhighlight %}
 
 api.rb 保存api的基本信息，包括版本，格式，并负责加载其它文件
-```ruby
+{% highlight ruby %}
 # api.rb
 require 'grape-swagger'
 
@@ -51,10 +51,10 @@ module V1
 
   end
 end
-```
+{% endhighlight %}
 
 products_api.rb 相当于controller
-```ruby
+{% highlight ruby %}
 # products_api.rb
 module V1
   class ProductsAPI < V1::API
@@ -86,10 +86,10 @@ module V1
   end
 end
 
-```
+{% endhighlight %}
 
 entities 目录下定义返回数据的实体，例如entities/product.rb和关联的product_category.rb
-```ruby
+{% highlight ruby %}
 # entities/product.rb
 module V1
   module Entities
@@ -111,9 +111,9 @@ module V1
     end
   end
 end
-```
+{% endhighlight %}
 
-```ruby
+{% highlight ruby %}
 # entities/product_category.rb
 module V1
   module Entities
@@ -125,10 +125,10 @@ module V1
   end
 end
 
-```
+{% endhighlight %}
 
 helpers目录下放公共方法
-```ruby
+{% highlight ruby %}
 # helpers/base_helper.rb
 module V1
   module Helpers
@@ -150,22 +150,22 @@ module V1
     end
   end
 end
-```
+{% endhighlight %}
 
 routes.rb
-```ruby
+{% highlight ruby %}
 # routes.rb
 mount V1::API => '/'
-```
+{% endhighlight %}
 
 调用方式
-```text
+{% highlight text %}
 http://localhost:3000/v1/products
-```
+{% endhighlight %}
 <br>
 
 ## 2 自动生成 api 文档
 grape-swagger 是用来自动生成api文档的，已经在 api.rb 中加载了，之后进入下面url就会看到自动生成的文档，只是没有样式，还需要再加入文档的样式表，参考[swagger-ui](https://github.com/swagger-api/swagger-ui)。
-```text
+{% highlight text %}
 http://localhost:3000/api/v1/swagger_doc
-```
+{% endhighlight %}
