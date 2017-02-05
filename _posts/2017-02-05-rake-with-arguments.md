@@ -9,6 +9,7 @@ keywords: rake arguments zsh
 有时候执行 `rake` 时需要加参数，代码如下:
 
 ```ruby
+# user.rake
 namespace :user do
   desc 'add new user'
   task :create, [:name, :password] => :environment do |task, args|
