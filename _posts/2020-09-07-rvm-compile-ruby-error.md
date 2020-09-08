@@ -4,6 +4,7 @@ title:  "因为 xcode-beta 的原因导致 rvm 安装 ruby 时编译报错"
 date:   2020-09-07 23:50:00 +0800
 categories: ruby rvm
 keywords: rvm ruby compile gcc xcode-beta
+comments: true
 ---
 
 最近闲来无事，把一些年久失修的软件升级了一下，结果就导致今天需要重新安装一个 ruby 版本时无法通过编译
@@ -32,6 +33,10 @@ rvm install 2.6.5 \
   --with-opt-dir=$(brew --prefix readline)
 ```
 
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
 /**
 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -51,4 +56,3 @@ s.setAttribute('data-timestamp', +new Date());
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                             
 {% endif %}
-
