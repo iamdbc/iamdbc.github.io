@@ -2,7 +2,7 @@
 layout: about
 ---
 
-Hi, iamdbc  
+Hi, iamdbc
 
 我会一点 Ruby / SQL / PHP，正在学习 Swift
 
