@@ -351,6 +351,15 @@ logrotate sample
 }
 ```
 
+切换 npm 和 yarn 源
+国内服务器每次部署会卡在 `[4/4] Building fresh packages...` 这一步，调整下面三个源可以解决
+
+```bash
+$ npm config set registry https://registry.npm.taobao.org
+$ yarn config set registry https://registry.npm.taobao.org
+$ yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g 
+```
+
 {% if page.comments %}
 <div id="disqus_thread"></div>
 <script>
