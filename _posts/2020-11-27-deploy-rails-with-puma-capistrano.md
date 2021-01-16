@@ -360,6 +360,82 @@ $ yarn config set registry https://registry.npm.taobao.org
 $ yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g 
 ```
 
+sidekiq
+
+在以下文件中增加对应配置
+```ruby
+# Gemfile
+gem 'sidekiq'
+gem 'capistrano-sidekiq'
+
+# Capfile
+require 'capistrano/sidekiq'
+install_plugin Capistrano::Sidekiq
+install_plugin Capistrano::Sidekiq::Systemd
+
+# deploy.rb
+append :linked_files, 'config/sidekiq.yml' # add sidekiq.yml to shared path
+set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
+set :pty, false
+
+# config/environments/production.rb
+config.active_job.queue_adapter = :sidekiq
+```
+
+config/initializers/sidekiq.rb
+```ruby
+Sidekiq.configure_server do |config|
+  config.redis = { url: ENV['sidekiq_redis_url'] }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: ENV['sidekiq_redis_url'] }
+end
+```
+
+systemd: sidekiq.service
+
+写入 ~/.config/systemd/user/sidekiq.service
+
+```bash
+[Unit]
+Description=sidekiq for your-app (production)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/deploy/app/your-app/current
+
+ExecStart=/home/deploy/.rbenv/shims/bundle exec sidekiq -e production
+
+ExecReload=/bin/kill -TSTP $MAINPID
+
+ExecStop=/bin/kill -TERM $MAINPID
+
+StandardOutput=append:/home/deploy/app/your-app/shared/log/sidekiq.log
+StandardError=append:/home/deploy/app/your-app/shared/log/sidekiq.error.log
+
+
+
+RestartSec=1
+Restart=on-failure
+
+SyslogIdentifier=sidekiq
+
+[Install]
+WantedBy=default.target
+
+```
+
+开启 sidekiq.service
+```bash
+$ systemctl --user daemon-reload
+$ systemctl --user enable sidekiq.service
+$ systemctl --user start sidekiq.service
+$ systemctl --user status sidekiq.service
+```
+
+
 {% if page.comments %}
 <div id="disqus_thread"></div>
 <script>
